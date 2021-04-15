@@ -4,6 +4,7 @@ using namespace std;
 
 struct Item
 {
+    int id;
     char name[25];
     int quantity;
     int guarantee;
@@ -17,6 +18,8 @@ int n = 0;
 
 void Input(Item &e)
 {
+    cout << "ID: ";
+    cin >> e.id;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cout<<"Name: ";
     cin.getline(e.name, 25);
@@ -49,6 +52,37 @@ void OutputArray()
         Output(items[i]);
 }
 
+void SearchByNumericCriteria()
+{
+    int c;
+    cout << "c= ";
+    cin >> c;
+    switch(c)
+    {
+    case 0:
+
+    }
+}
+
+void SearchByFloat(int c)
+{
+
+}
+
+void SearchByInt(int c)
+{
+
+}
+
+void SearchByID()
+{
+
+}
+
+void SearchByName()
+{
+
+}
 int main()
 {
     int n;
@@ -65,6 +99,15 @@ int main()
             break;
         case 2:
             OutputArray();
+            break;
+        case 3:
+            SearchByNumericCriteria();
+            break;
+        case 4:
+            SearchByID();
+            break;
+        case 5:
+            SearchByName();
             break;
         }
     }
