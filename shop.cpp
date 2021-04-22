@@ -1,5 +1,7 @@
-#include<iostream>
-#include<limits>
+#include <iostream>
+#include <limits>
+#include <cstring>
+
 using namespace std;
 
 struct Item
@@ -20,7 +22,8 @@ void Input(Item &e)
 {
     cout << "ID: ";
     cin >> e.id;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    //cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.get();
     cout<<"Name: ";
     cin.getline(e.name, 25);
     cout<<"Quantity: ";
@@ -55,34 +58,78 @@ void OutputArray()
 void SearchByNumericCriteria()
 {
     int c;
-    cout << "c= ";
+    cout << "Criteria#: ";
     cin >> c;
-    switch(c)
+    if (c < 3)
     {
-    case 0:
-
+        int value;
+        cout << "Integer value: ";
+        cin >> value;
+        switch(c) {
+        case 1:
+            for (int i = 0; i < n; i++) {
+                if (items[i].quantity >= value)
+                    Output(items[i]);
+            }
+        case 2:
+            for (int i = 0; i < n; i++) {
+                if (items[i].guarantee >= value)
+                    Output(items[i]);
+            }
+        }
     }
-}
-
-void SearchByFloat(int c)
-{
-
-}
-
-void SearchByInt(int c)
-{
-
+    else
+    {
+        float value;
+        cout << "Float value: ";
+        cin >> value;
+        switch(c)
+        {
+        case 3:
+            for (int i = 0; i < n ; i++)
+            {
+                if (items[i].sellRate >= value)
+                    Output(items[i]);
+            }
+        case 4:
+            for (int i = ; i < n; i++)
+            {
+                if (items[i].buyRate >= value)
+                    Output(items[i]);
+            }
+        }
+    }
 }
 
 void SearchByID()
 {
-
+    int id;
+    cout << "Search by ID: ";
+    cin >> id;
+    for(int i = 0; i < n; i++)
+    {
+        if (id == items[i].id)
+            Output(items[i]);
+    }
 }
 
 void SearchByName()
 {
+    char name[25];
+    cout << "Search by name: ";
+    cin.get();
+    cin.getline(name, 25);
+    for(int i = 0; i < n; i++)
+    {
+        if (strcmp(items[i].name, name) == 0)
+            Output(items[i]);
+    }
+}
+
+void CountByNumeric() {
 
 }
+
 int main()
 {
     int n;
@@ -100,15 +147,25 @@ int main()
         case 2:
             OutputArray();
             break;
-        case 3:
+        case 4:
             SearchByNumericCriteria();
             break;
-        case 4:
+        case 5:
             SearchByID();
             break;
-        case 5:
+        case 6:
             SearchByName();
             break;
+        case 7:
+            CountByNumeric();
+            break;
+        case 8:
+            break;
+        case 9:
+            break;
+        case 10:
+            break;
         }
+
     }
 }
